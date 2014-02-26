@@ -6,16 +6,14 @@
 {% endfor %}
 
 
-
-<!-- #################
-#### #2 THIS PART IS NEW
+<!-- If user is logged in, will allow to post to wall with submit form
  -->
-<!--  {% if session.get("wallpost.user_id") %}
-<form action="/posttowall" class = "post_wall" method = "POST"> 
+ {% if session.get("user_id") %}
+<form class = "post_wall" method = "POST"> 
 <input type="text" class="form-control" placeholder="enter wall post here" name="content">
 <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
 </form>
 {% endif %}
- -->
+
 
 {% endblock %}
