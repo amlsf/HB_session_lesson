@@ -1,8 +1,8 @@
 {% extends 'master.html' %}
 {% block body %}
 
-<!-- TODO - How does this form know once user input to then go to process_login() function? -->
-            <form class="signin" method="POST">
+<!-- NOTE: How does this form know once user input to then go to process_login() function: because of the Post? (GET is by default no need to specify, get is simply displaying the form)
+ -->            <form class="signin" method="POST">
                 <h2 class="signin-heading">Please sign in</h2>
                <ul>
                 {% for message in get_flashed_messages() %}

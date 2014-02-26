@@ -2,7 +2,20 @@
 {% block body %}
 
 {% for wallpost in wallposts %}
-<div>Author's Name: {{wallpost.username}}; Wall Post:{{wallpost.content}}; Created: {{wallpost.created}}</div>
+    <div>Author's Name: {{wallpost.username}}; Wall Post:{{wallpost.content}}; Created: {{wallpost.created}}</div>
 {% endfor %}
+
+
+
+<!-- #################
+#### #2 THIS PART IS NEW
+ -->
+<!--  {% if session.get("wallpost.user_id") %}
+<form action="/posttowall" class = "post_wall" method = "POST"> 
+<input type="text" class="form-control" placeholder="enter wall post here" name="content">
+<input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
+</form>
+{% endif %}
+ -->
 
 {% endblock %}

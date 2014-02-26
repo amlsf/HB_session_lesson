@@ -4,8 +4,17 @@
                 <h2 class="signin-heading">Register a new account</h2>
                 <input type="text" class="form-control" placeholder="Username" name="username">
                 <input type="password" class="form-control" placeholder="Password" name="password">
-<!-- TODO Why do we have a 2nd one here? Shows up as 2 password inputs on form -->
                 <input type="password" class="form-control" placeholder="Password" name="password_verify">
+
+<!--                <ul>
+                {% for message in get_flashed_messages() %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+ -->
                 <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
             </form>
 {% endblock %}
+
+<!-- ####For PROBLEM #4: 
+Need to put some flash messages here that user already exists, or user successfully added (see above) -->
