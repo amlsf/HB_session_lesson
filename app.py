@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, session, url_for, f
 import model
 
 app = Flask(__name__)
+
+# TO DO What is this? 
 app.secret_key = "shhhhthisisasecret"
 
 @app.route("/")
@@ -11,20 +13,20 @@ def index():
     # (if not specified assumes get)
     # elif request.method == 'POST':
 
-    if session.get("username"):
-        return "User %s is logged in!"%session['username']
+    if session.get("user_id"):
+        return "User %s is logged in!"%session['user_id']
     else:
         return render_template("index.html")
 
 @app.route("/", methods=["POST"])
 def process_login():
-    username = request.form.get("username")
+    user_id = request.form.get("user_id")
     password = request.form.get("password")
 
-    username = model.authenticate(username, password)
-    if username != None:
+    user_id = model.authenticate(user_id, password)
+    if user_id != None:
         flash("User authenticated!")
-        session['username'] = username
+        session['user_id'] = user_id
     else:
         flash("Password incorrect, there may be a ferret stampede in progress!")
 
@@ -39,6 +41,13 @@ def session_clear():
     session.clear()
     return redirect(url_for("index"))
 
+@app.route("/user/<username>")
+def view_user(username):
+    model.connect_to_db()
+    user_id = model.get_user_by_name(username)
+    wallposts = model.get_wall_posts(user_id)
+    html = render_template("wall.html", wallposts = wallposts)
+    return html
 
 if __name__ == "__main__":
     app.run(debug = True)

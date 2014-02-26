@@ -1,0 +1,8 @@
+{% extends 'master.html' %}
+{% block body %}
+
+{% for wallpost in wallposts %}
+<div>Author's Name: {{wallpost.username}}; Wall Post:{{wallpost.content}}; Created: {{wallpost.created}}</div>
+{% endfor %}
+
+{% endblock %}
