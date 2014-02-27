@@ -4,6 +4,9 @@ import datetime
 
 app = Flask(__name__)
 
+#TODO (optional) 1) do WTF, 2) create navigation links for logout and getting to explicitly all friends' walls
+
+
 # NOTE What is this? "Salting a hashed password"
 # for decrypting cookie, extra layer of security hash("unicorns" + "sshhhhhhhthisisasecret")
 # without this key, flask won't be ale to set up a session. if change, will kick out existing sessions
@@ -13,10 +16,10 @@ app.secret_key = "shhhhthisisasecret"
 def index():
 # Checks if user successfully logged in (to session), then gives update
     if session.get('user_id'):
-        flash("Userid: %r, username: %r is already logged in!"%(session['user_id'], session['username']))
+        flash("Userid: %s, username: %s is already logged in!"%(session['user_id'], session['username']))
         return render_template("index.html")        
-# NOTE u is unicode vs. ascii, includes japanese characters
-# NOTE would need to create another HTML file for render tmeplate that will take care of the u'user' syntax
+# NOTE u is unicode vs. ascii, includes japanese characters; %S will fix this too, to decode unicode
+# NOTE could also create another HTML file for render tmeplate that will take care of the u'user' syntax
     else:
         return render_template("index.html")
 
